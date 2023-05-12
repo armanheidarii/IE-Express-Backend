@@ -11,7 +11,10 @@ const studentModel = {
         type: String,
         enum: Object.values(semesterType).map(value => value.description)
     },
-    avgScore: Number,
+    avgScore: {
+        type: Number,
+        default: 0
+    },
     // college:,
     // field:,
 }
