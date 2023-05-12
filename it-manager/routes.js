@@ -10,9 +10,9 @@ module.exports.setup = (app, middleware, handler) => {
 
     router.post('/admin', handler.createAdmin)
 
-    router.post('/admin/student', authenticateToken, middleware.createStudent, middleware.isITManager, handler.createStudent)
-    router.put('/admin/student/:id', authenticateToken, middleware.updateStudent, middleware.isITManager, handler.updateStudent)
-    router.delete('/admin/student/:id', authenticateToken, middleware.deleteStudent, middleware.isITManager, handler.deleteStudent)
-    router.get('/admin/students', authenticateToken, middleware.getAllStudents, middleware.isITManager, handler.getAllStudents)
-    router.get('/admin/student/:id', authenticateToken, middleware.getOneStudent, middleware.isITManager, handler.getOneStudent)
+    router.post('/admin/student', authenticateToken, middleware.isITManager, middleware.createStudent, handler.createStudent)
+    router.put('/admin/student/:id', authenticateToken, middleware.isITManager, middleware.updateStudent, handler.updateStudent)
+    router.delete('/admin/student/:id', authenticateToken, middleware.isITManager, middleware.deleteStudent, handler.deleteStudent)
+    router.get('/admin/students', authenticateToken, middleware.isITManager, middleware.getAllStudents, handler.getAllStudents)
+    router.get('/admin/student/:id', authenticateToken, middleware.isITManager, middleware.getOneStudent, handler.getOneStudent)
 }
