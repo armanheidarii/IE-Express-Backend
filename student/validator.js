@@ -1,6 +1,11 @@
 const validator = require('express-validator')
 
 module.exports.updateStudent = {
+    paramID: validator.param('id').exists().withMessage('ID is required!')
+        .trim().notEmpty().withMessage('ID cannot be empty!')
+        .isLength({ max: 32 }).withMessage('ID is too long.')
+        .matches(/[\w_]+/).withMessage('ID must be a combination of upper and lower case English letters and numbers'),
+
     username: validator.body('username').exists().withMessage('Username is required!')
         .trim().notEmpty().withMessage('Username cannot be empty!')
         .isLength({ max: 32 }).withMessage('Username is too long.')
