@@ -18,6 +18,7 @@ module.exports.createMiddleware = services => {
             return res.sendStatus(403)
         }
 
+        req.ITManager = user
         next()
     }
 
@@ -28,6 +29,7 @@ module.exports.createMiddleware = services => {
             return res.status(400).send(validationResult.array())
         }
 
+        req.validData = validator.matchedData(req)
         next()
     }
 
@@ -38,6 +40,7 @@ module.exports.createMiddleware = services => {
             return res.status(400).send(validationResult.array())
         }
 
+        req.validData = validator.matchedData(req)
         next()
     }
 
@@ -48,6 +51,7 @@ module.exports.createMiddleware = services => {
             return res.status(400).send(validationResult.array())
         }
 
+        req.validData = validator.matchedData(req)
         next()
     }
 
@@ -62,6 +66,7 @@ module.exports.createMiddleware = services => {
             return res.status(400).send(validationResult.array())
         }
 
+        req.validData = validator.matchedData(req)
         next()
     }
 
