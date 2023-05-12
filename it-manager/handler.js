@@ -1,4 +1,3 @@
-const validator = require("express-validator")
 const response = require('./response')
 
 module.exports.createHandler = services => {
@@ -10,10 +9,7 @@ module.exports.createHandler = services => {
     }
 
     handler.createStudent = async (req, res) => {
-        const gradeType = require('../types/grade.js')
-        const semesterType = require('../types/semester.js')
-
-        const data = validator.matchedData(req)
+        const data = req.validData
 
         const filter = { username: data.username }
         const student = await services.studentService.getOneStudent(filter)
@@ -22,16 +18,13 @@ module.exports.createHandler = services => {
             return res.status(400).send('This username is already registered.')
         }
 
-        // samte db default 0 dashte bashe 
-        data.avgScore = 0
-
         const newStudent = await services.studentService.createStudent(data)
 
         res.status(201).send(response.createStudent(newStudent))
     }
 
     handler.updateStudent = async (req, res) => {
-        const data = validator.matchedData(req)
+        const data = req.validData
 
         const filter = { username: data.id }
         const student = await services.studentService.getOneStudent(filter)
@@ -60,7 +53,7 @@ module.exports.createHandler = services => {
     }
 
     handler.deleteStudent = async (req, res) => {
-        const data = validator.matchedData(req)
+        const data = req.validData
 
         const filter = { username: data.id }
         const student = await services.studentService.deleteStudent(filter)
@@ -79,7 +72,7 @@ module.exports.createHandler = services => {
     }
 
     handler.getOneStudent = async (req, res) => {
-        const data = validator.matchedData(req)
+        const data = req.validData
 
         const filter = { username: data.id }
         const student = await services.studentService.getOneStudent(filter)
