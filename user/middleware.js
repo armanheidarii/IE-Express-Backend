@@ -11,6 +11,7 @@ module.exports.createMiddleware = () => {
             return res.status(400).send(validationResult.array())
         }
 
+        req.validData = validator.matchedData(req)
         next()
     }
 
