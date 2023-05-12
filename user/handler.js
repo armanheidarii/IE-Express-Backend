@@ -4,7 +4,7 @@ module.exports.createHandler = services => {
     const handler = {}
 
     handler.login = async (req, res) => {
-        const data = validator.matchedData(req)
+        const data = req.validData
 
         const filter = { username: data.username }
         const user = await services.userService.getOneUser(filter)
